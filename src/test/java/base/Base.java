@@ -15,7 +15,7 @@ public class Base {
 
     public Base() {
         loadProperties();
-        initializeDriver(Boolean.getBoolean(getProperty("useDefaultVersion")));
+        initializeDriver(Boolean.parseBoolean(getProperty("useDefaultVersion")));
     }
 
     private void initializeDriver(boolean useDefault) {
@@ -31,9 +31,9 @@ public class Base {
         if (useDefault) {
             System.out.println("==================== Using Default Browser ====================");
             System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-            driver = new ChromeDriver(options);
+            driver = new ChromeDriver();
         } else {
-            WebDriverManager.chromedriver().browserVersion(getProperty("browser.version")).setup();
+            WebDriverManager.chromedriver().setup();
             System.out.println("==================== Browser version ====================");
             System.out.println(getProperty("browser.version"));
             System.out.println("==================== Browser version ====================");
