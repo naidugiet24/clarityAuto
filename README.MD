@@ -1,1 +1,1 @@
-Change use name and pass word in data.properties
+Change username and password in data.properties
