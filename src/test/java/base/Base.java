@@ -31,7 +31,7 @@ public class Base {
         if (useDefault) {
             System.out.println("==================== Using Default Browser ====================");
             System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
         } else {
             WebDriverManager.chromedriver().setup();
             System.out.println("==================== Browser version ====================");
