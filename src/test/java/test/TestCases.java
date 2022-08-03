@@ -1,5 +1,10 @@
+package test;
+
+import base.Base;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+import pages.HomePage;
+import pages.LoginPage;
 
 
 public class TestCases {

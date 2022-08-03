@@ -1,3 +1,5 @@
+package base;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -28,7 +30,7 @@ public class Base {
         options.addArguments("--disable-gpu");
         if (useDefault) {
             System.out.println("==================== Using Default Browser ====================");
-            System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
             driver = new ChromeDriver(options);
         } else {
             WebDriverManager.chromedriver().browserVersion(getProperty("browser.version")).setup();
@@ -41,7 +43,7 @@ public class Base {
 
     private void loadProperties() {
         try {
-            FileReader reader = new FileReader("src/resources/data.properties");
+            FileReader reader = new FileReader("src/test/resources/data.properties");
             properties = new Properties();
             properties.load(reader);
         } catch (Exception e) {
