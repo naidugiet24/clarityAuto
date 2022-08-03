@@ -15,10 +15,10 @@ public class Base {
 
     public Base() {
         loadProperties();
-        initializeDriver(Boolean.parseBoolean(getProperty("useDefaultVersion")));
+        initializeDriver(Boolean.parseBoolean(getProperty("useConfiguredVersion")));
     }
 
-    private void initializeDriver(boolean useDefault) {
+    private void initializeDriver(boolean useConfiguredVersion) {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
@@ -28,16 +28,15 @@ public class Base {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-browser-side-navigation");
         options.addArguments("--disable-gpu");
-        if (useDefault) {
-            System.out.println("==================== Using Default Browser ====================");
-            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        if (useConfiguredVersion) {
+            System.out.println("==================== Using configured version for browser ====================");
+            System.out.println(getProperty("browser.version"));
+            WebDriverManager.chromedriver().browserVersion(getProperty("browser.version")).setup();
             driver = new ChromeDriver(options);
         } else {
             WebDriverManager.chromedriver().setup();
-            System.out.println("==================== Browser version ====================");
-            System.out.println(getProperty("browser.version"));
-            System.out.println("==================== Browser version ====================");
             driver = new ChromeDriver(options);
+            System.out.println("==================== Using default browser version ====================");
         }
     }
 
